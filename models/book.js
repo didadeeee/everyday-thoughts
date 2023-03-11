@@ -4,9 +4,7 @@ const Schema = mongoose.Schema;
 
 const thoughtSchema = new Schema({
     thought: String
-  } , {
-      timestamps: true
-  });
+});
 
 
 const bookSchema = new Schema({

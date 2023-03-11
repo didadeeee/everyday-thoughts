@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+<table id="list">
+    <thead>
+      <tr>
+        <th>Thought</th>
+        <th>Book Title</th>
+        <th>Quote</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(function(b) { %>
+        <tr>
+          <td><%= b.thought %></td>
+          <td><%= b.bookTitle %></td>
+          <td><%= b.quote %></td>
+          <td>
+            <form action="/thoughts/edit/<%= b._id %>" method="get"><button type="submit">Edit Thought</button></form>
+            <form action="/thoughts/<%= b._id %>?_method=DELETE" method="post"><button type="submit">Delete</button></form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>

@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+
+<div class="form">
+    <h1>Update your Favorite Quote</h1>
+    <form action="/books/edit/<%=id%>?_method=PUT" method="post">
+    <label for="booktitle">Book Title:</label>
+    <input type="text" name="bookTitle"><br><br>
+    <label for="quote">Quote:</label>
+    <input type="text" name="quote"><br><br>
+    <button type="submit">Update</button>
+    </form>
+</div>
