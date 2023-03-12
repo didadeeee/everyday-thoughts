@@ -5,10 +5,10 @@ const Book = require('./models/book');
 const User = require('./models/user');
 
 async function createUser() {
-    const user = new User({ name: 'Ida', email: 'didadeeee@gmail.com' });
-    console.log('test');
+    const user = new User({ name: 'Ida', email: 'didadeeee@gmail.com', password: 'lalala' });
     try {
     await user.save();
+    console.log('test');
     console.log(user);
     } catch (err) {
     console.log('error');
@@ -36,4 +36,4 @@ async function createBook(){
         }
     
 
-createThought();
+createUser();

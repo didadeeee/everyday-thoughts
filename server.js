@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const { handleErrors, handleValidationErrors } = require('./middleware/custom_errors');
+const session = require('express-session');
 const methodOverride = require('method-override');
 
 require('dotenv').config();
@@ -19,12 +21,26 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method')); 
+app.use(handleValidationErrors);
+// The catch all for handling errors
+// MUST BE PLACED IMMEDIATELY BEFORE `app.listen`
+app.use(handleErrors);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
