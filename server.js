@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const { handleErrors, handleValidationErrors } = require('./middleware/custom_errors');
 const session = require('express-session');
 const methodOverride = require('method-override');
 
@@ -20,14 +19,13 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.set("trust proxy", 1); // trust first proxy
 
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true },
   })
 );
 
@@ -36,11 +34,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  console.log("testing");
+  next();
+});
+
+
 app.use(methodOverride('_method')); 
-app.use(handleValidationErrors);
-// The catch all for handling errors
-// MUST BE PLACED IMMEDIATELY BEFORE `app.listen`
-app.use(handleErrors);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

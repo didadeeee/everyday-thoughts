@@ -1,11 +1,11 @@
 <%- include('../partials/header') %>
 
 <div class="container">
-    <form method="post" action="signin">
+    <form method="post" action="login">
     <label for="email"><b>Email</b></label>
     <input type="email" name="email" required><br><br>
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
-    <button type="submit">Login</button>
+    <button type="submit">Login</button><br><br><%=msg%>
 </form>
 </div>

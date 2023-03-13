@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 // Shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema;
-
-const thoughtSchema = new Schema({
-    thought: String
-});
-
+const Thought = require("../models/thought");
 
 const bookSchema = new Schema({
   bookTitle: {
@@ -16,7 +12,8 @@ const bookSchema = new Schema({
     type: String,
     required: true
   },
-  thought: [thoughtSchema]
+  thought: { type: Schema.Types.ObjectId, ref: Thought }
 });
+
 
 module.exports = mongoose.model('Book', bookSchema);
