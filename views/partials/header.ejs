@@ -12,13 +12,15 @@
     <ul class="newbook">
         <li><a class="active" href="/">HOME</a></li>
         <li><a href="/books">BOOKS</a></li>
-        <li><a href="/thoughts">THOUGHTS</a></li>
         <% isLoggedIn = false; %>
         <% if (isLoggedIn) { %>
-            <li><a href="/">LOG OUT</a></li>
+            <li><a href="/logout">LOGOUT</a></li>
         <%} else { %>
         <li><a href="/users/newaccount">CREATE ACCOUNT</a></li>
         <li><a href="/users/login">LOGIN</a></li>
+        <form method="post" action="/users/logout" >
+            <button type="submit" class="btn btn-primary btn-white" aria-haspopup="true"
+            aria-expanded="false">Logout</button>
         <% } %>
     </ul>
     </nav>

@@ -15,7 +15,7 @@
           <td>
             <form action="/books/<%= b._id %>/edit" method="get"><button type="submit">Update</button></form>
             <form action="/books/<%= b._id %>?_method=DELETE" method="post"><button type="submit">Delete</button></form>
-            <form action="/books/<%= b._id %>/edit" method="get"><button type="submit">Thoughts</button></form>
+            <form action="/books/<%= b._id %>/edit/#thoughts" method="get"><button type="submit">View Thoughts</button></form>
           </td>
         </tr>
         <% }); %>
