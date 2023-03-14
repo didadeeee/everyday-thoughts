@@ -1,12 +1,43 @@
 <%- include('../partials/header') %>
 
 <div class="form">
-    <h1>Update your Favorite Quote</h1>
-    <form action="/books/edit/<%=id%>?_method=PUT" method="post">
-    <label for="booktitle">Book Title:</label>
-    <input type="text" name="bookTitle"><br><br>
-    <label for="quote">Quote:</label>
-    <input type="text" name="quote"><br><br>
-    <button type="submit">Update</button>
+    <h2>Update your Favorite Book</h2>
+    <form action="/books/<%=book.id%>/edit?_method=PUT" method="post">
+        <label for="booktitle">Book Title: </label>
+        <input type="text" name="bookTitle" value="<%=book.bookTitle %>"><br><br>
+        <label for="quote">Quote: </label>
+        <input type="text" name="quote" value="<%=book.quote%>"><br><br>
+        <button type="submit">Update</button>
+    </form>
+    <table id="list">
+        <thead>
+          <tr>
+            <th>Thoughts</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% book.thoughts.forEach(function(t) { %>
+            <tr>
+                <form action="/books/<%=book.id%>/thoughts/<%=t._id %>?_method=PUT" method="post">
+                    <td>
+                        <input type="text" name="thought" value="<%=t.thought%>"/>
+                    </td>
+                    <td>
+                        <button type="submit">Update Thought</button>
+                        <form action="/thoughts/<%=t._id%>?_method=DELETE" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </form>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <h3>Express Your Thoughts, However You Want.</h3>
+    <form action="/books/<%=book.id%>/thoughts" method="post">
+        <label for="thought">Thought:</label>
+        <input type="text" name="thought" id="thoughtbox"><br><br>
+        <button type="submit">Submit Thought</button>
     </form>
 </div>

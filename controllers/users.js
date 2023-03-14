@@ -26,7 +26,7 @@ try {
 // and use the await keyword before them
 const password = await bcrypt.hash(req.body.password, saltRounds);
 const user =  await User.create( {name: req.body.name, email: req.body.email, password});
-res.status(201).redirect('/users/login');
+res.status(201).render('users/login', {msg: 'Account Succesfully Created! Login to Access Full Features :)'})
 } catch (error) {
 // return the next callback and pass it the error from catch
   return next(error);
@@ -50,7 +50,7 @@ return;
 bcrypt.compare(password, user.password, (err, result) => {
 if (result) {
 req.session.email = user.email;
-res.redirect("/");
+res.render("index");
 } else {
 const context = { msg: "Incorrect Password" };
 res.render("users/login", context);

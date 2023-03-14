@@ -13,9 +13,9 @@
           <td><%= b.bookTitle %></td>
           <td><%= b.quote %></td>
           <td>
-            <form action="/books/thoughts/<%= b._id %>"><button type="submit">Add Thought</button></form>
-            <form action="/books/edit/<%= b._id %>" method="get"><button type="submit">Update</button></form>
+            <form action="/books/<%= b._id %>/edit" method="get"><button type="submit">Update</button></form>
             <form action="/books/<%= b._id %>?_method=DELETE" method="post"><button type="submit">Delete</button></form>
+            <form action="/books/<%= b._id %>/edit" method="get"><button type="submit">Thoughts</button></form>
           </td>
         </tr>
         <% }); %>

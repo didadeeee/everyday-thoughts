@@ -1,8 +1,14 @@
-<%- include('partials/header') %>
+<%- include('partials/header')%>
 
 <section id="welcome">
- <h1>Welcome, how are you feeling today?</h1>
+  <% name = 'Stranger'; %>
+  <% if (name) { %>
+  <h1>Welcome <%=name%>, how are you feeling today?</h1>
+  <%} else { %>
+  <h1>Welcome, how are you feeling today?</h1>    
+  <% } %>
 <p>"You must do the thing you think you cannot do, Eleanor Roosevelt"</p>
+
 <article>
 <img src="images/book.png" alt="Book Graphic">
 <h2>Loving your read?</h2><br>
@@ -19,3 +25,4 @@ Don't worry. Your thoughts are perfectly safe with us.<br>
 </section>
   </body>
 </html>
+

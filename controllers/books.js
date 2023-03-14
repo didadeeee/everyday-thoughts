@@ -51,7 +51,8 @@ res.status(500).send('Server Error');
 async function editBook (req, res) {
 try {
 const { id } = req.params;
-    res.render('books/edit', { id });
+const book = await Book.findById(id);
+res.render('books/edit', { book });
 } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');

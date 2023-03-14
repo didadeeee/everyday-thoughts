@@ -1,7 +1,17 @@
 const mongoose = require('mongoose');
-// Shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema;
-const Thought = require("../models/thought");
+
+const thoughtSchema = new Schema(
+  {
+    thought: {
+      type: String,
+      required: true,
+    },
+},
+  {
+    timestamps: true,
+  }
+);
 
 const bookSchema = new Schema({
   bookTitle: {
@@ -12,7 +22,7 @@ const bookSchema = new Schema({
     type: String,
     required: true
   },
-  thought: { type: Schema.Types.ObjectId, ref: Thought }
+  thoughts: [thoughtSchema]
 });
 
 
