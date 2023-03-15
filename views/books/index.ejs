@@ -1,24 +1,32 @@
 <%- include('../partials/header') %>
 <table id="list">
-    <thead>
-      <tr>
-        <th>Book Title</th>
-        <th>Quote</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% books.forEach(function(b) { %>
-        <tr>
-          <td><%= b.bookTitle %></td>
-          <td><%= b.quote %></td>
-          <td>
-            <form action="/books/<%= b._id %>/edit" method="get"><button type="submit">Update</button></form>
-            <form action="/books/<%= b._id %>?_method=DELETE" method="post"><button type="submit">Delete</button></form>
-            <form action="/books/<%= b._id %>/edit/#thoughts" method="get"><button type="submit">View Thoughts</button></form>
-          </td>
-        </tr>
-        <% }); %>
-      </tbody>
-    </table>
-    <div class="newbook"><a class="newbook" href="/books/new">Record a New Book</a></div>
+  <thead>
+    <tr>
+      <th>Book Title</th>
+      <th>Quote</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% books.forEach(function(b) { %>
+    <tr>
+      <td><%= b.bookTitle %></td>
+      <td><%= b.quote %></td>
+      <td>
+        <form action="/books/<%= b._id %>/edit" method="get">
+          <button type="submit">Update</button>
+        </form>
+        <form action="/books/<%= b._id %>?_method=DELETE" method="post">
+          <button type="submit">Delete</button>
+        </form>
+        <form action="/books/<%= b._id %>/edit/#thoughts" method="get">
+          <button type="submit">View Thoughts</button>
+        </form>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+<div class="newbook">
+  <a class="newbook" href="/books/new">Record a New Book</a>
+</div>

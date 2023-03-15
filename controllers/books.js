@@ -1,33 +1,21 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const User = require("../models/user");
 const Book = require("../models/book");
 
-
 function newBook(req, res) {
-if (req.session) {
-isLoggedIn = true;
-} else {
-isLoggedIn = false;
-}
-res.render("books/new");
+  if (req.session) {
+    const isLoggedIn = true;
+  } else {
+    const isLoggedIn = false;
+  }
+  res.render("books/new");
 }
 
 async function index(req, res) {
   try {
     const books = await Book.find({});
-    res.render("books/index", { books, isLoggedIn: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
-  }
-}
-
-async function show(req, res) {
-  try {
-    const book = await Book.findById(req.params.id);
-    const thoughts = await book.thoughts;
-    res.render("books/show", { book, thoughts, isLoggedIn: true });
+    const isLoggedIn = true;
+    res.render("books/index", { books, isLoggedIn });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -46,9 +34,10 @@ async function create(req, res, next) {
 
 async function editBook(req, res) {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const book = await Book.findById(id);
-    res.render("books/edit", { book, isLoggedIn: true });
+    const isLoggedIn = true;
+    res.render("books/edit", { book, isLoggedIn });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -84,7 +73,6 @@ async function deleteBook(req, res, next) {
 module.exports = {
   newBook,
   index,
-  show,
   create,
   editBook,
   updateBook,
