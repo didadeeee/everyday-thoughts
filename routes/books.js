@@ -1,8 +1,9 @@
 var express = require("express");
 var router = express.Router();
 const bookCtrl = require("../controllers/books");
-const userCtrl = require("../controllers/users")
 const User = require('../models/user');
+const userCtrl = require("../controllers/users")
+
 
 
 // starting from books

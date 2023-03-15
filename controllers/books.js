@@ -5,13 +5,18 @@ const Book = require("../models/book");
 
 
 function newBook(req, res) {
-  res.render("books/new");
+if (req.session) {
+isLoggedIn = true;
+} else {
+isLoggedIn = false;
+}
+res.render("books/new");
 }
 
 async function index(req, res) {
   try {
     const books = await Book.find({});
-    res.render("books/index", { books });
+    res.render("books/index", { books, isLoggedIn: true });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -22,8 +27,7 @@ async function show(req, res) {
   try {
     const book = await Book.findById(req.params.id);
     const thoughts = await book.thoughts;
-    console.log(thoughts);
-    res.render("books/show", { book, thoughts });
+    res.render("books/show", { book, thoughts, isLoggedIn: true });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -44,7 +48,7 @@ async function editBook(req, res) {
   try {
     const { id } = req.params;
     const book = await Book.findById(id);
-    res.render("books/edit", { book });
+    res.render("books/edit", { book, isLoggedIn: true });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -85,5 +89,4 @@ module.exports = {
   editBook,
   updateBook,
   deleteBook,
-
 };

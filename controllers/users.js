@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 // starting from users/
 const newAccount = function (req, res, next) {
-  res.render("users/newaccount");
+  res.render("users/newaccount", { isLoggedIn:false });
 };
 
 async function create(req, res, next) {
@@ -31,7 +31,7 @@ async function create(req, res, next) {
 
 const login = function (req, res, next) {
   const { email, password } = req.body;
-  res.render("users/login", { msg: "" });
+  res.render("users/login", { msg: "" , isLoggedIn:false });
 };
 
 async function signIn(req, res, next) {
@@ -43,15 +43,12 @@ async function signIn(req, res, next) {
     return;
   }
   bcrypt.compare(password, user.password, (err, result) => {
-    if (result) {
-      req.session.user = {
-        userId: user._id,
-        name: user.name,
-        isLoggedIn:true
-      }
-      res.render("index", req.session.user);
+  if (result) {
+      req.session.userId = user._id;
+      req.session.isLoggedIn = true;
+      res.render("index", req.session);
     } else {
-      const context = { msg: "Incorrect Password", isLoggedIn: false };
+      const context = { msg: "Incorrect Password"};
       res.render("users/login", context);
     }
   });
@@ -62,7 +59,7 @@ const signOut = async (req, res) => {
     req.session.destroy();
     console.log("Session end");
   }
-  res.render("users/login", {isLoggedIn: false});
+  res.render("users/login", { msg: "", isLoggedIn:false });
 };
 
 
@@ -70,6 +67,7 @@ const isAuth = async (req, res, next) => {
   if (req.session.userId) {
     const user = await User.findById(req.session.userId).exec();
     res.locals.user = user;
+    isLoggedIn = true;
     next();
   } else {
     res.status(403).redirect('/users/newaccount');
