@@ -36,7 +36,7 @@ const login = function (req, res, next) {
 
 async function signIn(req, res, next) {
   const { email, password } = req.body;
-  const user = await User.findOne({ email }).exec();
+  const user = await User.findOne({ email:email }).exec();
   if (!user) {
     const context = { msg: "User does not exist" };
     res.render("users/login", context);
@@ -44,9 +44,12 @@ async function signIn(req, res, next) {
   }
   bcrypt.compare(password, user.password, (err, result) => {
     if (result) {
-      req.session.userid = user._id;
-      context = { isLoggedIn: true };
-      res.render("index", context);
+      req.session.user = {
+        userId: user._id,
+        name: user.name,
+        isLoggedIn:true
+      }
+      res.render("index", req.session.user);
     } else {
       const context = { msg: "Incorrect Password", isLoggedIn: false };
       res.render("users/login", context);
@@ -59,7 +62,18 @@ const signOut = async (req, res) => {
     req.session.destroy();
     console.log("Session end");
   }
-  res.redirect("/users/login");
+  res.render("users/login", {isLoggedIn: false});
+};
+
+
+const isAuth = async (req, res, next) => {
+  if (req.session.userId) {
+    const user = await User.findById(req.session.userId).exec();
+    res.locals.user = user;
+    next();
+  } else {
+    res.status(403).redirect('/users/newaccount');
+  }
 };
 
 module.exports = {
@@ -68,4 +82,5 @@ module.exports = {
   login,
   signIn,
   signOut,
+  isAuth
 };

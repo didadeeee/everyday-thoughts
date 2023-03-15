@@ -8,6 +8,6 @@ router.get('/newaccount', userCtrl.newAccount);
 router.post('/signup', userCtrl.create);
 router.get('/login', userCtrl.login);
 router.post('/login', userCtrl.signIn);
-router.get("/logout", userCtrl.signOut);
+router.get("/logout", userCtrl.isAuth, userCtrl.signOut);
 
 module.exports = router;

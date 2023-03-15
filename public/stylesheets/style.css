@@ -23,12 +23,16 @@ li {
   display: inline-block;
 }
 
-a:not(.signin, .welcomebutton){
+a:not(.signin, .welcomebutton, .newbook){
   display: block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+}
+
+.newbook {
+text-align: center;
 }
 
 article {
