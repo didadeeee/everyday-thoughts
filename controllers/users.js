@@ -39,17 +39,16 @@ async function signIn(req, res, next) {
   const user = await User.findOne({ email }).exec();
   if (!user) {
     const context = { msg: "User does not exist" };
-    //how shall i change the login text to logout
     res.render("users/login", context);
     return;
   }
   bcrypt.compare(password, user.password, (err, result) => {
     if (result) {
       req.session.userid = user._id;
-       context = {isLoggedIn:true }
+      context = { isLoggedIn: true };
       res.render("index", context);
     } else {
-      const context = { msg: "Incorrect Password", isLoggedIn:false };
+      const context = { msg: "Incorrect Password", isLoggedIn: false };
       res.render("users/login", context);
     }
   });
@@ -60,13 +59,13 @@ const signOut = async (req, res) => {
     req.session.destroy();
     console.log("Session end");
   }
-  res.redirect("/");
-}
+  res.redirect("/users/login");
+};
 
 module.exports = {
   newAccount,
   create,
   login,
   signIn,
-  signOut
+  signOut,
 };

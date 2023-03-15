@@ -5,7 +5,8 @@ const User = require('../models/user');
 
 // starting from home page
 router.get('/', function(req, res, next) {
-  res.render('index');
+  context = { isLoggedIn:false }
+  res.render('index', context);
 });
 
 module.exports = router;

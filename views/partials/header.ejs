@@ -18,9 +18,9 @@
         <%} else { %>
         <li><a href="/users/newaccount">CREATE ACCOUNT</a></li>
         <li><a href="/users/login">LOGIN</a></li>
-        <form method="post" action="/users/logout" >
-            <button type="submit" class="btn btn-primary btn-white" aria-haspopup="true"
-            aria-expanded="false">Logout</button>
+        <form method="get" action="/users/logout" >
+            <button type="submit">Logout</button>
         <% } %>
+        </form>
     </ul>
     </nav>

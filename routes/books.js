@@ -3,18 +3,17 @@ var router = express.Router();
 const bookCtrl = require("../controllers/books");
 const User = require('../models/user');
 
-const isAuth = async (req, res, next) => {
-  if (req.session.userid) {
-    const user = await User.findById(req.session.userid).exec();
-    console.log(req.session.userid);
-    res.locals.user = user;
-    next();
-  } else {
-    context = { msg: "Login to Access the Full Features :) "}
-    res.render('users/login', context)
-  }
-};
 
+const isAuth = async (req, res, next) => {
+    if (req.session.userid) {
+      const user = await User.findById(req.session.userid).exec();
+      res.locals.user = user;
+      next();
+    } else {
+      res.status(403).redirect('/users/newaccount');
+    }
+  };
+  
 
 // starting from books
 router.get("/new", isAuth, bookCtrl.newBook);
