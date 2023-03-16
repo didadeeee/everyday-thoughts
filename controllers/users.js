@@ -5,8 +5,8 @@ const User = require("../models/user");
 const saltRounds = 10;
 
 function newAccount(req, res) {
-  const isLoggedIn = false;
-  res.render("users/newaccount", { isLoggedIn });
+  context = { isLoggedIn: false, errormsg: "" };
+  res.render("users/newaccount", context);
 }
 
 async function create(req, res, next) {
@@ -17,11 +17,28 @@ async function create(req, res, next) {
       email: req.body.email,
       password,
     });
-    res.status(201).render("users/login", {
+    context = {
+      isLoggedIn: false,
       msg: "Account Succesfully Created! Login to Access Full Features :)",
-    });
+    };
+    res.status(201).render("users/login", context);
   } catch (error) {
-    return next(error);
+    if (error.code === 11000) {
+      context = {
+        errormsg: "There's a duplicate, try again?",
+        isLoggedIn: false,
+      };
+      res.render("users/newaccount", context);
+    }
+    if (error.name === "ValidationError") {
+      context = {
+        errormsg: "Kindly key in valid information.",
+        isLoggedIn: false,
+      };
+      res.render("users/newaccount", context);
+    } else {
+      return next(error);
+    }
   }
 }
 
@@ -37,7 +54,7 @@ async function signIn(req, res, next) {
   const password = req.body.password;
   const user = await User.findOne({ email }).exec();
   if (!user) {
-    const context = { msg: "User does not exist" };
+    const context = { msg: "User does not exist", isLoggedIn:false };
     res.render("users/login", context);
     return;
   }
