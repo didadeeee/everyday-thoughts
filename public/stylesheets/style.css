@@ -1,5 +1,5 @@
 body {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .topnav a:hover {
@@ -26,11 +26,10 @@ a:not(.signin, .welcomebutton, .newbook) {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  
 }
 
 a:not(.welcomebutton, .fa, .signin, .newbook) {
-  font-family: 'Gaegu', cursive;
+  font-family: "Gaegu", cursive;
 }
 
 .newbook {
@@ -80,7 +79,7 @@ table td {
 }
 
 #list td {
-  font-size:14px
+  font-size: 14px;
 }
 
 #list td:nth-child(2),
@@ -115,7 +114,7 @@ img {
 }
 
 textarea {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 14px;
 }
 
@@ -161,5 +160,7 @@ footer {
 
 .dailyquote {
   font-weight: bold;
-  font-size:14px;
+  font-size: 14px;
+  width: 50%;
+  margin: auto;
 }

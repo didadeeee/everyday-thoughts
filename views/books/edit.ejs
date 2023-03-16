@@ -32,12 +32,9 @@
     <tbody>
       <% book.thoughts.forEach(function(t) { %>
       <tr>
-        <td><%=t.thought%></td>
+        <td><%=t%></td>
         <td>
-          <form
-            action="/books/<%=book.id%>/thoughts/<%=t._id %>?_method=DELETE"
-            method="post"
-          >
+          <form action="/books/<%=book.id%>/thoughts/<%=t._id %>?_method=DELETE" method="post">
             <button type="submit">Delete</button>
           </form>
           <% }); %>

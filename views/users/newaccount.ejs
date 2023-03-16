@@ -1,20 +1,25 @@
 <%- include('../partials/header') %>
 
 <div class="container">
-    <h2>Sign Up to Record your Books Today!</h2>
-    <form action="/users/signup" method="post">
+  <h2>Begin your Everyday Thoughts.</h2>
+  <form action="/users/signup" method="post">
     <label for="name"><b>Name</b></label>
-    <input type="text" name="name" required><br><br>
+    <input type="text" name="name" required /><br /><br />
     <label for="email"><b>Email</b></label>
-    <input type="email" name="email" required><br><br>
+    <input type="email" name="email" required /><br /><br />
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required minlength="6">
+    <input
+      type="password"
+      placeholder="Enter Password"
+      name="password"
+      required
+      minlength="6"
+    />
     <button type="submit">Create Account</button>
-    </form>
-    <p><%=errormsg%></p>
-    Already has an account?
-    <a class="signin" href="/users/login">Sign In Here</a>
-    
+  </form>
+  <p><%=errormsg%></p>
+  Have an account with us?
+  <a class="signin" href="/users/login">Sign In Here</a>
 </div>
 
 <%- include('../partials/footer') %>

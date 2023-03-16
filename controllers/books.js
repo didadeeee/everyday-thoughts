@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const Book = require("../models/book");
 
+
 function newBook(req, res) {
   if (req.session) {
     const isLoggedIn = true;

@@ -4,7 +4,7 @@
 <h1>Welcome, how are you feeling today?</h1>
 <%if(quote.author === "Anonymous"){ %>
 <p class="dailyquote">"<%=quote.quote%>"</p>%>
-<%} else { %>
+<% } else { %>
 <p class="dailyquote"><%=quote.author%>: "<%=quote.quote%>"</p>
 <%};%>
 <article>
@@ -12,7 +12,7 @@
 <h2>Loving your read?</h2><br>
 Record your thoughts;<br><br>
 Bookmark your favorite quote.<br><br>
-Celebrate your progress every single day. <br><br>
+Celebrate your progress every single day. <br>
 </article>
 <button><a class="welcomebutton" href="/books/new">Record your Book</a></button>
 </section>

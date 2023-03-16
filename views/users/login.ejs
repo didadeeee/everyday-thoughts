@@ -1,16 +1,20 @@
 <%- include('../partials/header') %>
 
-
 <div class="container">
-    <h2>Login to Access your Favorite Books</h2>
-    <form method="post" action="login">
+  <h2>Login to Access your Favorite Books</h2>
+  <form method="post" action="login">
     <label for="email"><b>Email</b></label>
-    <input type="email" name="email" required><br><br>
+    <input type="email" name="email" required /><br /><br />
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-    <button type="submit">Login</button><br>
+    <input
+      type="password"
+      placeholder="Enter Password"
+      name="password"
+      required
+    />
+    <button type="submit">Login</button><br />
     <p><%=msg%></p>
-</form>
+  </form>
 </div>
 
 <%- include('../partials/footer') %>

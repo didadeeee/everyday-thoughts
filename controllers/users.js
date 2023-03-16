@@ -1,8 +1,24 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
-
 const saltRounds = 10;
+
+function fetchData() {
+  return fetch("https://api.goprogram.ai/inspiration").then((res) =>
+    res.json()
+  );
+}
+
+async function homePage(req, res) {
+  const quote = await fetchData();
+  if (req.session.isLoggedIn) {
+    const isLoggedIn = true;
+    res.render("index", { quote, isLoggedIn });
+  } else {
+    const isLoggedIn = false;
+    res.render("index", { quote, isLoggedIn });
+  }
+}
 
 function newAccount(req, res) {
   context = { isLoggedIn: false, errormsg: "" };
@@ -19,7 +35,7 @@ async function create(req, res, next) {
     });
     context = {
       isLoggedIn: false,
-      msg: "Account Succesfully Created! Login to Access Full Features :)",
+      msg: "Account Succesfully Created! Login to Begin your Everyday Thoughts!",
     };
     res.status(201).render("users/login", context);
   } catch (error) {
@@ -32,7 +48,7 @@ async function create(req, res, next) {
     }
     if (error.name === "ValidationError") {
       context = {
-        errormsg: "Kindly key in valid information.",
+        errormsg: "Invalid Details. Try Again?",
         isLoggedIn: false,
       };
       res.render("users/newaccount", context);
@@ -52,9 +68,13 @@ const login = function (req, res) {
 async function signIn(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
+  const quote = {
+    author: "Eleanor Roosevelt",
+    quote: "You must do the thing you think you cannot do.",
+  };
   const user = await User.findOne({ email }).exec();
   if (!user) {
-    const context = { msg: "User does not exist", isLoggedIn:false };
+    const context = { msg: "User does not exist", isLoggedIn: false };
     res.render("users/login", context);
     return;
   }
@@ -62,9 +82,10 @@ async function signIn(req, res, next) {
     if (result) {
       req.session.userId = user._id;
       req.session.isLoggedIn = true;
+      req.session.quote = quote;
       res.render("index", req.session);
     } else {
-      const context = { msg: "Incorrect Password", isLoggedIn:false };
+      const context = { msg: "Incorrect Password", isLoggedIn: false };
       res.render("users/login", context);
     }
   });
@@ -73,7 +94,6 @@ async function signIn(req, res, next) {
 const signOut = async (req, res) => {
   if (req.session) {
     req.session.destroy();
-    console.log("Session end");
   }
   res.render("users/login", { msg: "", isLoggedIn: false });
 };
@@ -96,4 +116,5 @@ module.exports = {
   signIn,
   signOut,
   isAuth,
+  homePage,
 };

@@ -23,7 +23,7 @@ const userSchema = new Schema(
       minLength: 6,
       validate: {
         validator: function (password) {
-          return validator.isStrongPassword(password, { minLength: 3 });
+          return validator.isStrongPassword(password, { minLength: 6 });
         },
         message: "Password must be at least 6 characters long",
       },
