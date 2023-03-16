@@ -6,7 +6,7 @@
 
 <br/>
 
-#### **Record everything about your favorite book, all in one place.**
+### **Record everything about your favorite book, all in one place.**
 
 <br/>
 
@@ -19,15 +19,23 @@ To securely store the book information, authorisation and authentication are imp
 ### **User Stories**
 
 As a user, I get to access my book records by logging in the Everyday Thoughts App.<br/>
-As a user, I get to also record my favorite quote, rating and genre and thought about the book. <br/>
+As a user, I get to record my favorite quote, rating, genre and thought about my books. <br/>
 As a user, I get to manage (update and delete) the information that I have recorded.<br/>
 
 ### **Wireframe**
 
 <br/>
 
+### **Login Page**</br></br>
+
 ![login page](/public/images/signin.png "Login Page")</br>
+
+### **Initial Plan**</br></br>
+
 ![initial plan](/public/images/initialplan.png "Initial Plan")</br>
+
+### **Thought Form**</br></br>
+
 ![thought form](/public/images/thought.png "Thought Form")</br>
 
 ### **Model**
@@ -60,14 +68,17 @@ As a user, I get to manage (update and delete) the information that I have recor
 
 ### **Technologies & Tools Used**
 
-1. Node JS
-2. Express
-3. MongoDB & Mongoose
-4. JavaScript
-5. EJS
-6. bcrypt, Validator
-7. Others (nodemon, dotenv, gitignore, method-override, cyclic deployment)
-8. Git & GitHub
+1. Node.js
+2. Express Framework
+3. Express Middleware
+4. MongoDB & Mongoose
+5. JavaScript
+6. API
+7. EJS Partial Templates
+8. bcrypt, Validator
+9. Cyclic deployment
+10. Developer Tools: nodemon, dotenv, gitignore
+11. Git & GitHub
 
 ## **Getting Started**
 
@@ -81,12 +92,13 @@ As a user, I get to manage (update and delete) the information that I have recor
 
 1. Additional model entities such as thoughts for journaling purposes.
 2. Admin role to manage user database.
+3. Increased error handling.
    </br>
    </br>
 
 ## **Biggest Challenge**
 
-- To manipulate the EJS view between Login & Logout (Favorite EJS View)
+- To manipulate the EJS view between Login & Logout
 
 ```ejs
 <% if (isLoggedIn) { %>
@@ -96,6 +108,8 @@ As a user, I get to manage (update and delete) the information that I have recor
 <li><a href="/users/login">LOGIN</a></li>
 <% } %>
 ```
+
+- To manipulate the EJS view for API quote
 
 ```ejs
 <%if(quote.author === "Anonymous"){ %>
@@ -209,6 +223,7 @@ async function deleteThought(req, res) {
   }
 }
 ```
+
 - API
 
 ```javascript
@@ -235,20 +250,19 @@ async function homePage(req, res) {
 </br>
 
 - Initial planning on CRUD and Model Entity
-- Different way of validation: Regex, Schema Validation
-- Naming (singular, plural) matters A LOT
-- Opening and closing tags, to "/" or not to "/"
-- Debugging
+- Different way of validation: HTML Input, Regular Expressions, Schema Validation
+- Naming (singular, plural, capital) matters A LOT
+- JavaScript Promises: Async & Await
 - Manipulate data using EJS
+- Error Handling
+- Opening and closing tags, to "/" or not to "/"
+- Debugging Skills
+- MongoDB & Mongoose Synthax
 - req.params/sessions/body & res.redirect/render/send
-- Understanding Documentation on Packages
+- Managing embedded data as an array: push, deleteOne and save.
+- Understanding documentation on npm packages
 - The Importance of Authorisation
 - Password Hashing
-- Error Handling
-- MongoDB & Mongoose Synthax
-- Async & Await promises
-- Managing embedded data as an array: push, deleteOne and save.
-- Practice, practice, practice
 
 </br>
 
@@ -266,4 +280,5 @@ Case studies: <a href="https://journey.cloud">Journey</a> | <a href="https://pen
 Wireframe: <a href="https://www.canva.com/templates/EAEe_RcBaOI-soft-and-grey-login-page-wireframe-website-ui-prototype/">Canva</a><br/>
 Header and Footer Template: <a href="https://www.w3schools.com/">W3Schools</a><br/>
 Social Icons: <a href="https://fontawesome.com/">Font Awesome</a></br>
-Quote API: <a href="https://api.goprogram.ai/inspiration/docs/">Inspiration</a>
+Quote API: <a href="https://api.goprogram.ai/inspiration/docs/">Inspiration</a></br>
+API Reference: <a href="https://stackoverflow.com/questions/57675038/fetching-data-from-an-api-then-sending-it-to-an-ejs-file"> Stack Overflow</a>
