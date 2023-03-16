@@ -29,7 +29,7 @@ async function create(req, res, next) {
     res.redirect("/books");
   } catch (err) {
     console.error(err);
-    res.status(500).send("Server Error");
+    res.status(500).render("books/index");
   }
 }
 
