@@ -3,10 +3,14 @@ var router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
-// starting from /
-router.get("/", function (req, res, next) {
-  context = { isLoggedIn: false };
-  res.render("index", context);
+function fetchData(){
+  return fetch("https://api.goprogram.ai/inspiration")
+      .then(res => res.json())
+}
+
+router.get("/", async(req, res) => {
+  const quote = await fetchData()
+  res.render("index", { quote, isLoggedIn:false });
 });
 
 module.exports = router;

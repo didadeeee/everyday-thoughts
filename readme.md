@@ -112,4 +112,5 @@ Admin role to access the database in the dashboard for improved decision making.
 Case studies: <a href="https://journey.cloud">Journey</a><a href="https://penzu.com/">Penzu</a><br/>
 Wireframe: <a href="https://www.canva.com/templates/EAEe_RcBaOI-soft-and-grey-login-page-wireframe-website-ui-prototype/">Canva</a><br/>
 Header and Footer Template: <a href="https://www.w3schools.com/">W3Schools</a><br/>
-Social Icons: <a href="https://fontawesome.com/">Font Awesome<a>
+Social Icons: <a href="https://fontawesome.com/">Font Awesome</a></br>
+Quote API: <a href="https://api.goprogram.ai/inspiration/docs/">Inspiration Documentation</a>
