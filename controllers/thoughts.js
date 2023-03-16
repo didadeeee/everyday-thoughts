@@ -19,7 +19,7 @@ async function createThought(req, res, next) {
     const book = await Book.findById(id);
     book.thoughts.push(req.body);
     await book.save();
-    res.redirect(`/books/${id}/edit`);
+    res.redirect(`/books/${id}/edit/#thoughts`);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -36,7 +36,7 @@ async function deleteThought(req, res) {
     );
     foundThought.deleteOne(thoughtId);
     await book.save();
-    res.redirect(`/books/${bookId}/edit`);
+    res.redirect(`/books/${bookId}/edit/#thoughts`);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");

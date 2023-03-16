@@ -4,13 +4,22 @@
   <h2>Update your Favorite Book</h2>
   <form action="/books/<%=book.id%>/edit?_method=PUT" method="post">
     <label for="booktitle">Book Title: </label>
-    <input
-      type="text"
-      name="bookTitle"
-      value="<%=book.bookTitle %>"
+    <input type="text" name="bookTitle" value="<%=book.bookTitle %>"
     /><br /><br />
     <label for="quote">Quote: </label>
-    <input type="text" name="quote" value="<%=book.quote%>" /><br /><br />
+    <textarea type="text" name="quote" rows="6" cols="50"><%=book.quote%></textarea><br /><br />
+    <label for="rating">Rating:</label>
+    <input type="number" name="rating" min="1" max="5" value="<%=book.rating%>"/><br /><br />
+    <label for="genre">Genre:</label>
+    <select name="genre" multiple>
+      <option value="Action & Adventure">Action & Adventure</option>
+      <option value="Detective & Mystery">Detective & Mystery</option>
+      <option value="Sci-Fi">Sci-Fi</option>
+      <option value="Romance">Romance</option>
+      <option value="Biographies">Biographies</option>
+      <option value="Self-Help">Self-Help</option>
+    </select>
+  </br></br>
     <button type="submit">Update</button>
   </form>
   <table id="list">
@@ -40,7 +49,7 @@
   <h3 id="thoughts">Express Your Thoughts, However You Want.</h3>
   <form action="/books/<%=book.id%>/thoughts" method="post">
     <label for="thought">Thought:</label>
-    <input type="text" name="thought" id="thoughtbox" /><br /><br />
+    <textarea type="text" name="thought" rows="4" cols="50"></textarea><br /><br />
     <button type="submit">Submit Thought</button>
   </form>
 </div>

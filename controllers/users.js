@@ -64,7 +64,7 @@ async function signIn(req, res, next) {
       req.session.isLoggedIn = true;
       res.render("index", req.session);
     } else {
-      const context = { msg: "Incorrect Password" };
+      const context = { msg: "Incorrect Password", isLoggedIn:false };
       res.render("users/login", context);
     }
   });

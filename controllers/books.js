@@ -51,6 +51,8 @@ async function updateBook(req, res, next) {
     const books = await Book.findByIdAndUpdate(id, {
       bookTitle: context.bookTitle,
       quote: context.quote,
+      rating: context.rating, 
+      genre: context.genre,
     });
     res.redirect("/books");
   } catch (err) {
