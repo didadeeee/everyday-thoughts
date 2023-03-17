@@ -2,8 +2,6 @@
 
 ### **App Description**
 
-<br/>
-
 #### **Record everything about your favorite book, all in one place.**
 
 <br/>
@@ -257,8 +255,6 @@ async function homePage(req, res) {
 ## **Q&A**
 
 </br>
-
----
 
 ## **Resources**
 
