@@ -68,10 +68,7 @@ const login = function (req, res) {
 async function signIn(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
-  const quote = {
-    author: "Eleanor Roosevelt",
-    quote: "You must do the thing you think you cannot do.",
-  };
+  const quote = await fetchData();
   const user = await User.findOne({ email }).exec();
   if (!user) {
     const context = { msg: "User does not exist", isLoggedIn: false };

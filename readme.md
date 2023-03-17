@@ -1,19 +1,18 @@
 ## **Everyday Thoughts**
 
-<br/>
-
 ### **App Description**
 
 <br/>
 
-### **Record everything about your favorite book, all in one place.**
+#### **Record everything about your favorite book, all in one place.**
 
 <br/>
 
-Everyday Thoughts is an app that demonstrates 2 data entities including the user, book and embedded data: thoughts.
+Everyday Thoughts is an app that demonstrates 2 data entities including the user, book and embedded data - thoughts.
 <br/>
 <br/>
 To securely store the book information, authorisation and authentication are implemented throughout the app.
+<br/>
 <br/>
 
 ### **User Stories**
@@ -22,35 +21,31 @@ As a user, I get to access my book records by logging in the Everyday Thoughts A
 As a user, I get to record my favorite quote, rating, genre and thought about my books. <br/>
 As a user, I get to manage (update and delete) the information that I have recorded.<br/>
 
-### **Wireframe**
+## **Wireframe**
 
-<br/>
-
-### **Login Page**</br></br>
+### **Login Page**</br>
 
 ![login page](/public/images/signin.png "Login Page")</br>
 
-### **Initial Plan**</br></br>
+### **Initial Plan**</br>
 
 ![initial plan](/public/images/initialplan.png "Initial Plan")</br>
 
-### **Thought Form**</br></br>
+### **Thought Form**</br>
 
 ![thought form](/public/images/thought.png "Thought Form")</br>
 
-### **Model**
-
-<br/>
+### **Model**<br/>
 
 ![model](/public/images/model.png "Model")
 
-### **CRUD**</br></br>
+### **CRUD**</br>
 
 ![crud](/public/images/crud_1.png "CRUD")
 ![crud](/public/images/crud_2.png "CRUD")
 ![crud](/public/images/crud_3.png "CRUD")
 
-### **Daily Plan**</br></br>
+### **Daily Plan**</br>
 
 ![daily plan](/public/images/dailyplan.png "Daily Plan")
 
@@ -58,11 +53,11 @@ As a user, I get to manage (update and delete) the information that I have recor
 
 ## **Screenshots**
 
-### **Books**</br></br>
+### **Books**</br>
 
 ![book index](/public/images/books.png "Book Index")
 
-### **Update View**</br></br>
+### **Update View**</br>
 
 ![update view](/public/images/updatebook.png "Update Book")
 
@@ -73,12 +68,12 @@ As a user, I get to manage (update and delete) the information that I have recor
 3. Express Middleware
 4. MongoDB & Mongoose
 5. JavaScript
-6. API
-7. EJS Partial Templates
-8. bcrypt, Validator
-9. Cyclic deployment
-10. Developer Tools: nodemon, dotenv, gitignore
-11. Git & GitHub
+6. EJS Partial Templates
+7. bcrypt, Validator
+8. Cyclic deployment
+9. nodemon, dotenv, gitignore
+10. Git & GitHub
+11. API
 
 ## **Getting Started**
 
@@ -86,15 +81,12 @@ As a user, I get to manage (update and delete) the information that I have recor
 
 ## **Next Steps**
 
-</br>
-
 ### **Future Plan**
 
 1. Additional model entities such as thoughts for journaling purposes.
 2. Admin role to manage user database.
 3. Increased error handling.
-   </br>
-   </br>
+4. Clean input data.
 
 ## **Biggest Challenge**
 
@@ -164,10 +156,7 @@ async function create(req, res, next) {
 async function signIn(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
-  const quote = {
-    author: "Eleanor Roosevelt",
-    quote: "You must do the thing you think you cannot do.",
-  };
+  const quote = await fetchData();
   const user = await User.findOne({ email }).exec();
   if (!user) {
     const context = { msg: "User does not exist", isLoggedIn: false };
@@ -247,9 +236,8 @@ async function homePage(req, res) {
 
 ## **Key Learnings**
 
-</br>
-
 - Initial planning on CRUD and Model Entity
+- Importance of MVC Approach
 - Different way of validation: HTML Input, Regular Expressions, Schema Validation
 - Naming (singular, plural, capital) matters A LOT
 - JavaScript Promises: Async & Await
@@ -259,10 +247,10 @@ async function homePage(req, res) {
 - Debugging Skills
 - MongoDB & Mongoose Synthax
 - req.params/sessions/body & res.redirect/render/send
-- Managing embedded data as an array: push, deleteOne and save.
-- Understanding documentation on npm packages
+- Managing embedded data as an array: push, find, deleteOne and save
 - The Importance of Authorisation
 - Password Hashing
+- User Testing
 
 </br>
 
@@ -274,11 +262,10 @@ async function homePage(req, res) {
 
 ## **Resources**
 
-</br>
-
 Case studies: <a href="https://journey.cloud">Journey</a> | <a href="https://penzu.com/">Penzu</a><br/>
 Wireframe: <a href="https://www.canva.com/templates/EAEe_RcBaOI-soft-and-grey-login-page-wireframe-website-ui-prototype/">Canva</a><br/>
 Header and Footer Template: <a href="https://www.w3schools.com/">W3Schools</a><br/>
 Social Icons: <a href="https://fontawesome.com/">Font Awesome</a></br>
 Quote API: <a href="https://api.goprogram.ai/inspiration/docs/">Inspiration</a></br>
+Validation: <a href="https://www.npmjs.com/package/validator"> Validator</a></br>
 API Reference: <a href="https://stackoverflow.com/questions/57675038/fetching-data-from-an-api-then-sending-it-to-an-ejs-file"> Stack Overflow</a>

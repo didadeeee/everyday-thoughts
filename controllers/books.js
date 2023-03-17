@@ -2,7 +2,6 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const Book = require("../models/book");
 
-
 function newBook(req, res) {
   if (req.session) {
     const isLoggedIn = true;
@@ -14,6 +13,7 @@ function newBook(req, res) {
 
 async function index(req, res) {
   try {
+    // const user = await User.findById(req.session.userId).exec();
     const books = await Book.find({});
     const isLoggedIn = true;
     res.render("books/index", { books, isLoggedIn });
