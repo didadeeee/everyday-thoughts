@@ -3,20 +3,13 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const saltRounds = 10;
 
-function fetchData() {
-  return fetch("https://api.goprogram.ai/inspiration").then((res) =>
-    res.json()
-  );
-}
-
 async function homePage(req, res) {
-  const quote = await fetchData();
   if (req.session.isLoggedIn) {
     const isLoggedIn = true;
-    res.render("index", { quote, isLoggedIn });
+    res.render("index", { isLoggedIn });
   } else {
     const isLoggedIn = false;
-    res.render("index", { quote, isLoggedIn });
+    res.render("index", { isLoggedIn });
   }
 }
 
