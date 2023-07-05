@@ -4,6 +4,7 @@
 
 #### **Record everything about your favorite book, all in one place.**
 
+[Access Everyday Thoughts Here](https://plain-cuff-links-fly.cyclic.app/)
 <br/>
 
 Everyday Thoughts is an app that demonstrates 2 data entities including the user, book and embedded data - thoughts.
@@ -72,10 +73,6 @@ As a user, I get to manage (update and delete) the information that I have recor
 9. nodemon, dotenv, gitignore
 10. Git & GitHub
 11. API
-
-## **Getting Started**
-
-[Record your Everyday Thoughts Here](https://plain-cuff-links-fly.cyclic.app/)
 
 ## **Next Steps**
 
