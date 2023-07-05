@@ -71,7 +71,6 @@ async function signIn(req, res, next) {
     if (result) {
       req.session.userId = user._id;
       req.session.isLoggedIn = true;
-      req.session.quote = quote;
       res.render("index", req.session);
     } else {
       const context = { msg: "Incorrect Password", isLoggedIn: false };
